@@ -16,7 +16,7 @@ export const LoginForm = (props: LoginFormProps) => {
       <h1>Login</h1>
 
       <Form
-        submitText="Login"
+        submitText="Entrar"
         schema={Login}
         initialValues={{ email: "", password: "" }}
         onSubmit={async (values) => {
@@ -25,27 +25,23 @@ export const LoginForm = (props: LoginFormProps) => {
             props.onSuccess?.(user)
           } catch (error: any) {
             if (error instanceof AuthenticationError) {
-              return { [FORM_ERROR]: "Sorry, those credentials are invalid" }
+              return { [FORM_ERROR]: "Desculpe, credenciais incorretas." }
             } else {
               return {
                 [FORM_ERROR]:
-                  "Sorry, we had an unexpected error. Please try again. - " + error.toString(),
+                  "Desculpe, houve um erro inesperado. Por favor tente novamente. Log do erro: " +
+                  error.toString(),
               }
             }
           }
         }}
       >
         <LabeledTextField name="email" label="Email" placeholder="Email" />
-        <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
-        <div>
-          <Link href={Routes.ForgotPasswordPage()}>
-            <a>Forgot your password?</a>
-          </Link>
-        </div>
+        <LabeledTextField name="password" label="Senha" placeholder="Senha" type="password" />
       </Form>
 
       <div style={{ marginTop: "1rem" }}>
-        Or <Link href={Routes.SignupPage()}>Sign Up</Link>
+        Ou <Link href={Routes.SignupPage()}>Cadastre-se</Link>
       </div>
     </div>
   )

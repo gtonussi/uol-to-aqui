@@ -13,10 +13,10 @@ export const SignupForm = (props: SignupFormProps) => {
 
   return (
     <div>
-      <h1>Create an Account</h1>
+      <h1>Crie uma conta</h1>
 
       <Form
-        submitText="Create Account"
+        submitText="Criar Conta"
         schema={Signup}
         initialValues={{ email: "", password: "" }}
         onSubmit={async (values) => {
@@ -26,7 +26,7 @@ export const SignupForm = (props: SignupFormProps) => {
           } catch (error: any) {
             if (error.code === "P2002" && error.meta?.target?.includes("email")) {
               // This error comes from Prisma
-              return { email: "This email is already being used" }
+              return { email: "Este email já está sendo usado" }
             } else {
               return { [FORM_ERROR]: error.toString() }
             }
@@ -34,7 +34,11 @@ export const SignupForm = (props: SignupFormProps) => {
         }}
       >
         <LabeledTextField name="email" label="Email" placeholder="Email" />
-        <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
+        <LabeledTextField name="password" label="Senha" placeholder="Senha" type="password" />
+        <div style={{ display: "flex" }}>
+          <input name="role" type="checkbox" id="role-checkbox" />
+          <label htmlFor="role-checkbox">Dono de Negócio</label>
+        </div>
       </Form>
     </div>
   )

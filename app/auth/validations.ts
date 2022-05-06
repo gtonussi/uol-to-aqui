@@ -7,7 +7,7 @@ export const email = z
 
 export const password = z
   .string()
-  .min(10)
+  .min(3)
   .max(100)
   .transform((str) => str.trim())
 
@@ -32,7 +32,7 @@ export const ResetPassword = z
     token: z.string(),
   })
   .refine((data) => data.password === data.passwordConfirmation, {
-    message: "Passwords don't match",
+    message: "As senhas inseridas não são iguais.",
     path: ["passwordConfirmation"], // set the path of the error
   })
 
