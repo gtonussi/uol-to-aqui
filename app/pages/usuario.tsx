@@ -27,14 +27,7 @@ const Map = () => {
       <>
         {locations.map((location) => {
           const coordinates = getLatLng(location.coordinates)
-
-          return (
-            <Marker
-              key={location.id}
-              position={coordinates}
-              onClick={() => setSelectedMarker(location)}
-            />
-          )
+          return <Marker key={location.id} position={coordinates} />
         })}
       </>
     )
